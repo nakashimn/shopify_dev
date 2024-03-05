@@ -1,0 +1,18 @@
+services:
+  shopify_dev:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        GIT_USERNAME: ${GIT_USERNAME}
+        GIT_EMAIL_ADDRESS: ${GIT_EMAIL_ADDRESS}
+    container_name: shopify_dev
+    hostname: shopify_dev
+    shm_size: '4gb'
+    ports:
+      - 9292:9292
+    volumes:
+      - ./:/workspace:cached
+    environment:
+      TZ: America/Los_Angeles
+    tty: true
